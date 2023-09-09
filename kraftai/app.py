@@ -10,7 +10,7 @@ def index():
     return render_template('index.html')  
 
 
-
+# Rest API
 @app.route('/save-image', methods=['POST'])
 def save_image():
     try:

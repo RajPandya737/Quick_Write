@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/styles.css" />
+    <title>KraftAI</title>
+  </head>
+  <body>
+    <h1>OCR Result:</h1>
+    <div id="ocr-result"></div>
+    <canvas id="canvas"></canvas>
+    <script src="../static/js/script.js"></script>
+    <script>
+      // Fetch the OCR result from the server
+      async function fetchOCRResult() {
+        try {
+          const response = await fetch("/save-image", {
+            method: "POST",
+          });
+          const data = await response.json();
+
+          if ("ocr" in data) {
+            console.log("Success:", data.ocr);
+            updateOCRResult(data.ocr + "ffffff");
+          } else {
+            console.error("Error: Invalid response format");
+            updateOCRResult("An error occurred. initial");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          updateOCRResult("An error occurred.final");
+        }
+      }
+
+      // Fetch the OCR result as soon as the page loads
+      fetchOCRResult();
+    </script>
+  </body>
+</html>
