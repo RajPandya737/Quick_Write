@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify, render_template
+from flask_restful import Resource, Api
 from scan_text import ocr, whiteify
-import random
 
 app = Flask(__name__)
+api = Api(app)
 
 
 @app.route('/')
@@ -10,28 +11,28 @@ def index():
     return render_template('index.html')  
 
 
-# Rest API
-@app.route('/save-image', methods=['POST'])
-def save_image():
-    try:
+class SaveImage(Resource):
+    def post(self):
         data = request.json
         image_data = data.get('image')
-
         if image_data:
-
             image_data = image_data.replace('data:image/png;base64,', '')
-
             image_path = 'static/drawings/test.png'
-
             with open(image_path, 'wb') as f:
-                import base64
-                f.write(base64.b64decode(image_data))
-            whiteify(image_path)
-            ocr_text = ocr(image_path)
-            print(ocr_text)
-            return jsonify({"ocr": ocr_text}), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+                 import base64
+                 f.write(base64.b64decode(image_data))
+            return jsonify({"ocr": "success"})
+
+class GetOCR(Resource):
+    def post(self):
+        image_path = 'static/drawings/test.png'
+        whiteify(image_path)
+        ocr_text = ocr(image_path)
+        print(ocr_text)
+        return jsonify({"ocr": ocr_text})
+
+api.add_resource(SaveImage, '/save-image')
+api.add_resource(GetOCR, '/get-ocr')
 
 
 if __name__ == '__main__':

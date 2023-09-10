@@ -12,29 +12,31 @@
     <canvas id="canvas"></canvas>
     <script src="../static/js/script.js"></script>
     <script>
-      // Fetch the OCR result from the server
-      async function fetchOCRResult() {
-        try {
-          const response = await fetch("/save-image", {
-            method: "POST",
+      // Function to send a POST request to /get-ocr
+      function getOCRResult() {
+        // Get the canvas image data
+        var canvas = document.getElementById("canvas");
+        var imageBase64 = canvas.toDataURL("image/png");
+
+        // Send the image data to the server
+        fetch("/get-ocr", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ image: imageBase64 }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Display the OCR result on the web page
+            var ocrResultElement = document.getElementById("ocr-result");
+            ocrResultElement.innerText = "OCR Result: " + data.ocr;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
           });
-          const data = await response.json();
-
-          if ("ocr" in data) {
-            console.log("Success:", data.ocr);
-            updateOCRResult(data.ocr + "ffffff");
-          } else {
-            console.error("Error: Invalid response format");
-            updateOCRResult("An error occurred. initial");
-          }
-        } catch (error) {
-          console.error("Error:", error);
-          updateOCRResult("An error occurred.final");
-        }
       }
-
-      // Fetch the OCR result as soon as the page loads
-      fetchOCRResult();
+      setInterval(getOCRResult, 2000);
     </script>
   </body>
 </html>

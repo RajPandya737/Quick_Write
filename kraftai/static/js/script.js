@@ -55,9 +55,7 @@ function save() {
         body: JSON.stringify({ image: dataURL }),
     })
     .then((response) => {
-        if (response.ok) {
-            console.log('Image saved on the server successfully.');
-        } else {
+        if ( response.ok == false ) {
             console.error('Failed to save image on the server.');
         }
     })
