@@ -7,36 +7,12 @@
     <title>KraftAI</title>
   </head>
   <body>
-    <h1>OCR Result:</h1>
+    <button id="getWordButton"></button>
+    <div id="word-bubble"></div>
     <div id="ocr-result"></div>
     <canvas id="canvas"></canvas>
-    <script src="../static/js/script.js"></script>
-    <script>
-      // Function to send a POST request to /get-ocr
-      function getOCRResult() {
-        // Get the canvas image data
-        var canvas = document.getElementById("canvas");
-        var imageBase64 = canvas.toDataURL("image/png");
-
-        // Send the image data to the server
-        fetch("/get-ocr", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ image: imageBase64 }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            // Display the OCR result on the web page
-            var ocrResultElement = document.getElementById("ocr-result");
-            ocrResultElement.innerText = "OCR Result: " + data.ocr;
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      }
-      setInterval(getOCRResult, 2000);
-    </script>
+    <script src="../static/js/canvas.js"></script>
+    <script src="../static/js/ocr-script.js"></script>
+    <script src="../static/js/gen-word.js"></script>
   </body>
 </html>

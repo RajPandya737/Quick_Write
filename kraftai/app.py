@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify, render_template
 from flask_restful import Resource, Api
+
+import random
+
 from scan_text import ocr, whiteify
 
 app = Flask(__name__)
@@ -30,9 +33,20 @@ class GetOCR(Resource):
         ocr_text = ocr(image_path)
         print(ocr_text)
         return jsonify({"ocr": ocr_text})
+    
+class GiveWord(Resource):
+    def post(self):
+        path = 'static/data/words.txt'
+        with open(path, 'r') as f:
+            words = f.readlines()
+
+        rand_sent = random.sample(words, 1)[0].strip()
+            
+        return jsonify({"sentence": rand_sent})
 
 api.add_resource(SaveImage, '/save-image')
 api.add_resource(GetOCR, '/get-ocr')
+api.add_resource(GiveWord, '/give-word')
 
 
 if __name__ == '__main__':

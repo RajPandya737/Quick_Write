@@ -19,6 +19,3 @@ def whiteify(path):
         new_image.close()
     except Exception as e:
         print(f"An error occurred: {str(e)}")
-
-
-print(ocr("static/drawings/main.png"))
