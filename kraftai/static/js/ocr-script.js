@@ -17,13 +17,23 @@ function getOCRResult() {
       .then((response) => response.json())
       .then((data) => {
         // Display the OCR result on the web page
-        var ocrResultElement = document.getElementById("ocr-result");
-        ocrResultElement.innerText = "OCR Result: " + data.ocr;
+        var ocrResultElement = document.getElementById("ocrResult");
+        ocrResultElement.innerText = data.ocr;
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   }
+
+  function checkEqual () {
+    getOCRResult()
+    wordDisplay = document.getElementById("wordDisplay").innerHTML
+    ocrResult = document.getElementById("ocrResult").innerHTML
+    console.log(ocrResult)
+    if (ocrResult.toLowerCase() === wordDisplay.toLowerCase() && ocrResult != "�"){
+      console.log("Match")
+    }
+  }
   
-  setInterval(getOCRResult, 2000);
+  setInterval(checkEqual, 2000);
   
