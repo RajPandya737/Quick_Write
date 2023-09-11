@@ -29,7 +29,6 @@ function getOCRResult() {
     getOCRResult()
     wordDisplay = document.getElementById("wordDisplay").innerHTML
     ocrResult = document.getElementById("ocrResult").innerHTML
-    console.log(ocrResult)
     if (ocrResult.toLowerCase() === wordDisplay.toLowerCase() && ocrResult != "�"){
       console.log("Match")
     }
