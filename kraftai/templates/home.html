@@ -22,28 +22,38 @@
     <title>KraftAI</title>
   </head>
   <body>
-    <ul>
-      <li>
-        <a href="#" class="about">
-          <i class="fa-solid fa-question"></i>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="github">
-          <i class="fa-brands fa-github"></i>
-        </a>
-      </li>
-    </ul>
-    <div class="wrapper">
-      <div>
-        <img
-          src="{{ url_for('static', filename='images/home-img.png') }}"
-          alt="Quick, Write Logo"
-        />
+    <div class="hero">
+      <div class="top-buttons">
+        <ul>
+          <li>
+            <a href="#" class="about">
+              <i class="fa-solid fa-question"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/RajPandya737/KraftAI" class="github">
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </li>
+        </ul>
       </div>
-      <h1>Can a neural network recognize your handwriting?</h1>
-      <div class="button-wrapper">
-        <a href="{{ url_for('play') }}"><button>Let's Write!</button></a>
+      <div class="wrapper">
+        <div>
+          <img
+            src="{{ url_for('static', filename='images/home-img.png') }}"
+            alt="Quick, Write Logo"
+          />
+        </div>
+        <h1>Can a neural network recognize your handwriting?</h1>
+        <div class="button-wrapper">
+          <ul>
+            <li>
+              <a href="{{ url_for('play') }}" class="play-button">
+                <span>Let's Write!</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </body>

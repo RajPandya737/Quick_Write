@@ -66,7 +66,6 @@ function save() {
   var imageDataUrl = canvas.toDataURL("image/png");
 }
 
-// Function to save the canvas drawing as an image on the server
 function save() {
   const dataURL = canvas.toDataURL("image/png");
   fetch("/save-image", {
@@ -86,6 +85,5 @@ function save() {
     });
 }
 
-// Call the saveDrawingOnServer function every second using setInterval
 document.getElementById("changeBrush").addEventListener("click", changeBrush);
 setInterval(save, 2000);

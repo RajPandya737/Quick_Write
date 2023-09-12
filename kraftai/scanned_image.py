@@ -1,7 +1,5 @@
 import cv2
 import numpy as np
-from PIL import Image
-from scipy.ndimage import interpolation as inter
 
 
 class ScannedImage:

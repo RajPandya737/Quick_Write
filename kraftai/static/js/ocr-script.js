@@ -1,12 +1,8 @@
-// ocr-script.js
 
-// Function to send a POST request to /get-ocr
 function getOCRResult() {
-    // Get the canvas image data
     var canvas = document.getElementById("canvas");
     var imageBase64 = canvas.toDataURL("image/png");
   
-    // Send the image data to the server
     fetch("/get-ocr", {
       method: "POST",
       headers: {
@@ -16,7 +12,6 @@ function getOCRResult() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Display the OCR result on the web page
         var ocrResultElement = document.getElementById("ocrResult");
         ocrResultElement.innerText = data.ocr;
       })
