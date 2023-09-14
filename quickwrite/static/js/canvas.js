@@ -38,19 +38,24 @@ canvas.addEventListener("mousemove", function (event) {
   }
 });
 
-function drawCircle(x, y) {
-  ctx.fillStyle = "black";
-  ctx.beginPath();
-  ctx.arc(mouse.x, mouse.y, 10, 0, Math.PI * 2);
-  ctx.fill();
+function drawCircle() {
+  requestAnimationFrame(function () {
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.arc(mouse.x, mouse.y, 10, 0, Math.PI * 2);
+    ctx.fill();
+  });
 }
 
-function eraseCircle(x, y) {
-  ctx.fillStyle = "white";
-  ctx.beginPath();
-  ctx.arc(mouse.x, mouse.y, 10, 0, Math.PI * 2);
-  ctx.fill();
+function eraseCircle() {
+  requestAnimationFrame(function () {
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.arc(mouse.x, mouse.y, 20, 0, Math.PI * 2);
+    ctx.fill();
+  });
 }
+
 
 function changeBrush() {
   if (mouse.mode === 1) {
@@ -61,10 +66,6 @@ function changeBrush() {
   console.log(mouse.mode)
 }
 
-function save() {
-  var canvas = document.getElementById("yourCanvasId");
-  var imageDataUrl = canvas.toDataURL("image/png");
-}
 
 function save() {
   const dataURL = canvas.toDataURL("image/png");
@@ -76,7 +77,7 @@ function save() {
     body: JSON.stringify({ image: dataURL }),
   })
     .then((response) => {
-      if (response.ok == false) {
+      if (!response.ok) {
         console.error("Failed to save image on the server.");
       }
     })
@@ -84,6 +85,7 @@ function save() {
       console.error("Error while saving image:", error);
     });
 }
+
 
 document.getElementById("changeBrush").addEventListener("click", changeBrush);
 setInterval(save, 2000);
