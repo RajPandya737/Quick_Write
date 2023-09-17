@@ -13,7 +13,7 @@ function getOCRResult() {
       .then((response) => response.json())
       .then((data) => {
         var ocrResultElement = document.getElementById("ocrResult");
-        ocrResultElement.innerText = data.ocr;
+        ocrResultElement.innerText = "Guess: "+data.ocr;
       })
       .catch((error) => {
         console.error("Error:", error);
