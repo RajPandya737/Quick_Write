@@ -16,6 +16,6 @@ function getWord() {
       });
   }
   
-
+  getWord();
   document.getElementById('getWordButton').addEventListener('click', getWord);
   

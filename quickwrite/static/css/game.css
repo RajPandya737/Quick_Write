@@ -32,6 +32,12 @@ header {
 
 #changeBrush {
   position: absolute;
-  right: 3rem;
-  top: 3rem;
+  right: 5rem;
+  top: 8rem;
+}
+
+#timer {
+    position: absolute;
+    left: 1rem;
+    top: 0.05rem;
 }
