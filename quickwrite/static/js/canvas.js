@@ -81,14 +81,13 @@ console.log(window.location.pathname);
 const brushImage = document.getElementById("brushImage");
 
 function changeBrush() {
-  if (mouse.mode === 1) {
-    mouse.mode = 0;
+  if (mouse.mode === 0) {
+    mouse.mode = 1;
     brushImage.src = eraserImageUrl; // Change to eraser image
   } else {
-    mouse.mode = 1;
+    mouse.mode = 0;
     brushImage.src = brushImageUrl; // Change to brush image
   }
-  console.log(mouse.mode);
 }
 
 document.getElementById("changeBrush").addEventListener("click", changeBrush);

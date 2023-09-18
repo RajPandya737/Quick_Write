@@ -15,10 +15,16 @@ html {
   z-index: -1;
 }
 
-header {
+.head-1{
   background-color: #ffd139;
   display: flex;
   justify-content: space-around;
+  margin: 0;
+}
+.head-2{
+  background-color: #ababab;
+  height: 0.3rem;
+  border-color: none;
 }
 
 #ocrResult {
@@ -32,7 +38,7 @@ header {
 
 #changeBrush {
   position: absolute;
-  right: 5rem;
+  right: 3rem;
   top: 8rem;
 }
 

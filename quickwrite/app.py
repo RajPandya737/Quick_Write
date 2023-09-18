@@ -1,12 +1,12 @@
 from flask import Flask, request, jsonify, render_template
 from flask_restful import Resource, Api
-
 import base64
 import random
-
 from scan_text import ocr, whiteify
+import config
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = config.SECRET_KEY
 api = Api(app)
 
 
