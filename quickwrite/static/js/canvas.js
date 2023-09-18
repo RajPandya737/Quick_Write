@@ -14,8 +14,6 @@ const mouse = {
   mode: 1,
 };
 
-
-
 canvas.addEventListener("mousedown", function (event) {
   mouse.x = event.clientX;
   mouse.y = event.clientY;
@@ -56,17 +54,6 @@ function eraseCircle() {
   });
 }
 
-
-function changeBrush() {
-  if (mouse.mode === 1) {
-    mouse.mode = 0;
-  } else {
-    mouse.mode = 1;
-  }
-  console.log(mouse.mode)
-}
-
-
 function save() {
   const dataURL = canvas.toDataURL("image/png");
   fetch("/save-image", {
@@ -86,6 +73,23 @@ function save() {
     });
 }
 
+const brushImageUrl = "../static/images/brush.png";
+const eraserImageUrl = "../static/images/eraser.png";
+
+console.log(window.location.pathname);
+
+const brushImage = document.getElementById("brushImage");
+
+function changeBrush() {
+  if (mouse.mode === 1) {
+    mouse.mode = 0;
+    brushImage.src = eraserImageUrl; // Change to eraser image
+  } else {
+    mouse.mode = 1;
+    brushImage.src = brushImageUrl; // Change to brush image
+  }
+  console.log(mouse.mode);
+}
 
 document.getElementById("changeBrush").addEventListener("click", changeBrush);
 setInterval(save, 2000);

@@ -41,3 +41,15 @@ header {
     left: 1rem;
     top: 0.05rem;
 }
+
+button img {
+  width: 3rem;
+  height: 3rem;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 25%;
+}
