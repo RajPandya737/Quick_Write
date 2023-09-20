@@ -7,7 +7,7 @@ function getWord() {
     })
       .then((response) => response.json())
       .then((data) => {
-        const word = data.sentence;
+        const word = "yes" //data.sentence;
         console.log('Received word:', word);
         document.getElementById('wordDisplay').textContent = word;
       })
