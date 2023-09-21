@@ -19,10 +19,12 @@ function getOCRResult() {
     });
 }
 
-function checkEqual(score) {
+function checkEqual() {
   getOCRResult();
   wordDisplay = document.getElementById("wordDisplay").innerHTML;
-  ocrResult = document.getElementById("ocrResult").innerHTML;
+  ocrResult = document.getElementById("ocrResult").innerHTML.slice(7);
+  console.log(wordDisplay)
+  console.log(ocrResult)
   if (
     ocrResult.toLowerCase() === wordDisplay.toLowerCase() &&
     ocrResult != "�"
@@ -30,10 +32,21 @@ function checkEqual(score) {
     console.log("Match");
     score++;
     document.getElementById("score").innerHTML = "Score: " +score;
+    resetCanvas()
   }
 }
 
+function resetCanvas() {
+  // Clear the entire canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Fill the canvas with white color
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+
 var score = 0; // Replace 42 with your actual score value
-setInterval(function () {
-  checkEqual(score);
+setInterval(function(){
+  checkEqual(score)
 }, 2000);
